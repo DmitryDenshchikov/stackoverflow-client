@@ -1,0 +1,7 @@
+app:
+  stackexchange:
+    api:
+      host: api.stackexchange.com
+      version: 2.3
+
+logging.level.root: info
