@@ -1,4 +1,4 @@
-package denshchikov.dmitry.stackoverflowclient.model.response;
+package denshchikov.dmitry.stackoverflowclient.model.stackexchange.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

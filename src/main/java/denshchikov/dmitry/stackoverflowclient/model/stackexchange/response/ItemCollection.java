@@ -1,4 +1,4 @@
-package denshchikov.dmitry.stackoverflowclient.model.response;
+package denshchikov.dmitry.stackoverflowclient.model.stackexchange.response;
 
 import java.util.Collection;
 import java.util.Objects;
