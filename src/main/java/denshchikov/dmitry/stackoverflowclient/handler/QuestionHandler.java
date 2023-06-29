@@ -1,26 +1,20 @@
 package denshchikov.dmitry.stackoverflowclient.handler;
 
+import denshchikov.dmitry.stackoverflowclient.model.request.UnansweredQuestionsRequest;
+import denshchikov.dmitry.stackoverflowclient.model.stackexchange.response.QuestionCollection;
 import denshchikov.dmitry.stackoverflowclient.service.QuestionService;
-import org.springframework.http.MediaType;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import org.springframework.web.servlet.function.ServerRequest;
-import org.springframework.web.servlet.function.ServerResponse;
-
 @Component
+@RequiredArgsConstructor
 public class QuestionHandler {
 
     private final QuestionService questionService;
 
 
-    public QuestionHandler(QuestionService questionService) {
-        this.questionService = questionService;
-    }
-
-
-    public ServerResponse getQuestions(ServerRequest request) {
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(questionService.getQuestions());
+    public QuestionCollection getQuestions(UnansweredQuestionsRequest req) {
+        return questionService.getUnansweredQuestions(req.page(), req.topic());
     }
 
 
