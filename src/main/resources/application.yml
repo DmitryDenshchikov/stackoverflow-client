@@ -5,3 +5,8 @@ app:
       version: 2.3
 
 logging.level.root: info
+
+spring:
+  mvc:
+    problemdetails:
+      enabled: true

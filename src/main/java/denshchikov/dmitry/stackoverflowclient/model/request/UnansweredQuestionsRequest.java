@@ -1,4 +1,7 @@
 package denshchikov.dmitry.stackoverflowclient.model.request;
 
-public record UnansweredQuestionsRequest(String topic, Integer page) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record UnansweredQuestionsRequest(@NotBlank String topic, @NotNull Integer page) {
 }
