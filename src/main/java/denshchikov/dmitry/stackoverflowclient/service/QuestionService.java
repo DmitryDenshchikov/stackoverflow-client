@@ -11,8 +11,8 @@ import org.apache.hc.core5.http.URIScheme;
 import org.apache.hc.core5.net.URIBuilder;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
 
 @Component
 @RequiredArgsConstructor
@@ -23,9 +23,11 @@ public class QuestionService {
     private final ObjectMapper om;
 
 
-    public QuestionCollection getUnansweredQuestions(Integer page, String topic) {
+    public QuestionCollection getUnansweredQuestions(Integer page, Collection<String> topic) {
         try {
-            URI uri = new URIBuilder()
+            var tags = String.join(";", topic);
+
+            var uri = new URIBuilder()
                     .setScheme(URIScheme.HTTPS.toString())
                     .setHost(stackExchangeApiProperties.host())
                     .appendPath(stackExchangeApiProperties.version())
@@ -34,11 +36,11 @@ public class QuestionService {
                     .addParameter("page", String.valueOf(page))
                     .addParameter("order", "desc")
                     .addParameter("sort", "activity")
-                    .addParameter("tagged", topic)
+                    .addParameter("tagged", tags)
                     .addParameter("site", "stackoverflow")
                     .build();
 
-            String response = httpClient.execute(
+            var response = httpClient.execute(
                     new HttpGet(uri),
                     new BasicHttpClientResponseHandler()
             );
